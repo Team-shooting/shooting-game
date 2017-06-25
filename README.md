@@ -1,2 +1,4 @@
 # shooting-game
-シューティングゲームをつくる
+Welcom to "shooting-game"
+
+シューティングゲームを作ろう
