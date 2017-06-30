@@ -1,0 +1,94 @@
+@startuml
+
+package singleton {
+    class Camera
+}
+
+class System {
+    + run()
+}
+class FpsCtrl {
+    - fps
+    + update()
+    + delay()
+}
+class Game {
+    + initialize()
+    + update()
+    + draw()
+    + finalize()
+}
+class Board
+class Actor_ {
+    - life
+    - image
+    - position
+    - velocity
+    + initialize()
+    + update()
+    + draw()
+    + finalize()
+    - move()
+    + down_life()
+    + is_dead()
+    + get_pos()
+}
+class ActorMgr {
+    + initialize()
+    + update()
+    + draw()
+    + finalize()
+    - hit_test()
+    - kill_chara()
+}
+class CharaBase {
+    - shoot()
+}
+class Player {
+    - power
+    - power_up()
+}
+class Enemy {
+}
+class BossEnemy {
+    - hp
+    - down_hp()
+}
+class Bullet {
+    - type
+    - shade
+}
+class Factory {
+    + create()
+    - create_product()
+}
+class MoverFactory
+class MoverBase {
+    + move()
+}
+class Mover
+
+Actor_ <|-- CharaBase
+Actor_ <|-- Bullet
+CharaBase <|-- Player
+CharaBase <|-- Enemy
+CharaBase <|-- BossEnemy
+MoverBase <|-- Mover
+Factory <|-- MoverFactory
+
+System o-- Game
+System o-- FpsCtrl
+Game o-- Board
+Game o-- ActorMgr
+ActorMgr o-- Player
+ActorMgr o-- Enemy
+ActorMgr o-- BossEnemy
+ActorMgr o-- Bullet
+Enemy o-- Mover
+BossEnemy o-- Mover
+Bullet o-- Mover
+
+MoverBase <-- Factory : create
+Mover <-- MoverFactory : craete
+
+@enduml
