@@ -1,0 +1,44 @@
+# compiled object files
+*.slo
+*.lo
+*.o
+*.obj
+*.ko
+*.elf
+
+# precompiled headers
+*.gch
+*.pch
+
+# compiled dynamic libraries
+*.so
+*.so.*
+*.dylib
+*.dll
+
+# fortran module files
+*.mod
+
+# compiled static libraries
+*.lai
+*.la
+*.lo
+*.a
+*.lib
+
+# executables
+*.exe
+*.out
+*.app
+
+# build directories
+[Bb]uild/
+[Bb]in/
+
+# Doxygen generated documentation
+docs/
+
+# add
+*.d
+.*
+!.gitignore
