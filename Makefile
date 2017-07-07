@@ -7,7 +7,8 @@ SRC_DIRS ?= ./
 CXX = g++
 
 #SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
-SRCS := $(shell find $(SRC_DIRS) -name *.cpp)
+#SRCS := $(shell find $(SRC_DIRS) -name *.cpp)
+SRCS := $(shell ls $(SRC_DIRS) | grep .cpp)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
