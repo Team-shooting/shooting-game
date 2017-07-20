@@ -9,13 +9,13 @@ bool System::sdl_initialize() {
 	}
 
 	window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, 0);
-	if (window == NULL) {
+	if (window == nullptr) {
 		std::cerr << "Faild to create window" << std::endl;
 		return false;
 	}
 
 	render = SDL_CreateRenderer(window, -1, 0);
-	if (render == NULL) {
+	if (render == nullptr) {
 		std::cerr << "Faild to create render" << std::endl;
 		return false;
 	}
