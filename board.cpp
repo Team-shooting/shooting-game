@@ -10,7 +10,6 @@ Board::update()
 {
 	//残機の更新
 	//攻撃力の更新
-	//
 }
 
 Board::draw()
