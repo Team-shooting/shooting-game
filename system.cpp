@@ -43,7 +43,7 @@ void System::main_loop() {
 				flag = false;
 			}
 		}
-
+		
 		SDL_SetRenderDrawColor(render, 0, 0, 0, 255); 
 		SDL_RenderDrawLine(render, 10, 10, 400, 400);
 		SDL_RenderPresent(render);
