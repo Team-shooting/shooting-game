@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include "game.h"
 #include "fps.h"
 
 class System {
@@ -12,6 +13,8 @@ class System {
 	SDL_Event event;
 
 	Fps fps;
+
+	Game game;
 
 	char title[20] = "Shooting-Gmae";
 	const int width = 800;

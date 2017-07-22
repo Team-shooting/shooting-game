@@ -8,11 +8,12 @@ void Game::update()
 {
 }
 
-void draw()
+void Game::draw(SDL_Renderer **render)
 {
+	board.draw(render);
 }
 
-void finalize()
+void Game::finalize()
 {
 }
 

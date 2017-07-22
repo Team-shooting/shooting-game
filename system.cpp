@@ -44,8 +44,14 @@ void System::main_loop() {
 			}
 		}
 		
+		/*
 		SDL_SetRenderDrawColor(render, 0, 0, 0, 255); 
 		SDL_RenderDrawLine(render, 10, 10, 400, 400);
+		*/
+
+		game.draw(&render);
+
+		//Draw
 		SDL_RenderPresent(render);
 
 

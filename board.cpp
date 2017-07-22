@@ -1,22 +1,26 @@
 #include "board.h"
 
-Board::initialize()
+bool Board::initialize()
 {
 	//ハイスコアの取得
 	//残機・攻撃力の初期値を設定
+
+	return true;
 }
 
-Board::update()
+void Board::update()
 {
 	//残機の更新
 	//攻撃力の更新
 }
 
-Board::draw()
+void Board::draw(SDL_Renderer **render)
 {
+	SDL_SetRenderDrawColor(*render, 255, 165, 0, 255);
+	SDL_RenderFillRect(*render, &board);
 }
 
-Board::finalize()
+void Board::finalize()
 {
 	//ハイスコアの処理
 }

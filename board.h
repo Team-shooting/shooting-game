@@ -14,11 +14,12 @@ class Board {
 		const int xPos = 600;
 		const int yPow = 0;
 		SDL_Rect board = {600, 0, 200, 600};
+
 	public:
 		Board() = default;
 		~Board() = default;
 		bool initialize();
 		void update();
-		void draw();
+		void draw(SDL_Renderer **render);
 		void finalize();
-}
+};

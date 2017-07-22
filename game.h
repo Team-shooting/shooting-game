@@ -1,7 +1,13 @@
 #pragma once
 
+#include <SDL.h>
+
+#include "board.h"
+
 class Game {
 	private:
+
+		Board board;
 
 	public:
 		Game() = default;
@@ -9,7 +15,7 @@ class Game {
 
 		bool initialize();
 		void update();
-		void draw();
+		void draw(SDL_Renderer **render);
 		void finalize();
 };
 
