@@ -20,6 +20,9 @@ bool System::sdl_initialize() {
 		return false;
 	}
 
+	//Init game
+	game.initialize();
+
 	return true;
 }
 

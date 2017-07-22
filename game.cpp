@@ -2,6 +2,9 @@
 
 bool Game::initialize()
 {
+	board.initialize();
+
+	return true;
 }
 
 void Game::update()
