@@ -1,6 +1,8 @@
 #include "board.h"
 
 #include <iostream>
+#include <cstdlib>
+#include <string>
 using namespace std;
 
 bool Board::initialize()
@@ -8,13 +10,18 @@ bool Board::initialize()
 	//ハイスコアの取得
 	//残機・攻撃力の初期値を設定
 
-	//Init SDL_ttf
-	if (TTF_Init() < 0) cout << "Error : TTF_Init" << endl;
-	else cout << "Done... TTF_Init" << endl;
+	//IMG_Init
+	int flags = IMG_INIT_JPG;
+	if (IMG_Init(flags) != flags) {
+		cout << "Error : IMG_Init -- " << IMG_GetError() << endl;
+		exit(1);
+	}
 
-	TTF_OpenFont("TakaoGothic.ttf", 16);
-	if (font == nullptr) cout << "Error : TTF_OpenFont -- " << TTF_GetError() << endl;
-	else cout << "Done... TTF_OpenFont" << endl;
+	surf = IMG_Load("/home/hoge/shooting-game/shooting-game/resources/sake.jpg");
+	if (surf == nullptr) {
+		cout << "Error : IMG_Load -- " << IMG_GetError() << endl;
+		exit(1);
+	}
 
 	return true;
 }
@@ -27,34 +34,32 @@ void Board::update()
 
 void Board::draw(SDL_Renderer **render)
 {
-	//SDL_SetRenderDrawColor(*render, 255, 165, 0, 255);
-	//SDL_RenderDrawRect(*render, &board);
+	//IMG
+	static int tex_init = 0;
 
-	cout << "Start TTF_RenderUTF8_Solid" << endl;
-	surf = TTF_RenderUTF8_Solid(font, "Hello World",(SDL_Color){0, 0, 0, 255});
-	if (surf == nullptr) cout << "Error : " << SDL_GetError() << endl;
-	else cout << "Done... TTF_RenderUTF8_Solid" << endl;
+	if (tex_init == 0) {
+		tex = SDL_CreateTextureFromSurface(*render, surf);
+		if (tex == nullptr) {
+			cerr << "Error : " << SDL_GetError() << endl;
+			exit(1); 
+		}
 
+		int w, h;
+		SDL_QueryTexture(tex, NULL, NULL, &w, &h);
 
-	tex = SDL_CreateTextureFromSurface(*render, surf);
-	if (tex == nullptr) cout << "Error : " << SDL_GetError() << endl;
-	else cout << "Done... SDL_CreateTextureFormSurface" << endl;
+		texRect = (SDL_Rect){0, 0, w, h};
+		pasteRect = (SDL_Rect){0, 0, w, h};
 
-	int w, h;
-	SDL_QueryTexture(tex, NULL, NULL, &w, &h);
-	cout << "Done... SDL_QueryTexture" << endl;
-
-	texRect = (SDL_Rect){0, 0, w, h};
-	pasteRect = (SDL_Rect){100, 100, w, h};
+		tex_init = 1;
+	}
 
 	SDL_RenderCopy(*render, tex, &texRect, &pasteRect);
-	cout << "Done... SDL_RenderCopy" << endl;
+
 }
 
 void Board::finalize()
 {
 	//ハイスコアの処理
-	
 
 	SDL_FreeSurface(surf);
 }

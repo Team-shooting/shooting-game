@@ -1,21 +1,18 @@
 #pragma once
 
 #include <SDL.h>
-
-#include "board.h"
+#include <board.h>
 
 class Game {
-	private:
+	Board board;
 
-		Board board;
+public:
+	Game() = default;
+	~Game() = default;
 
-	public:
-		Game() = default;
-		~Game() = default;
-
-		bool initialize();
-		void update();
-		void draw(SDL_Renderer **render);
-		void finalize();
+	bool initialize();
+	void update();
+	void draw(SDL_Renderer **render);
+	void finalize();
 };
 

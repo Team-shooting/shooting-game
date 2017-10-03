@@ -2,6 +2,7 @@
 #include <iostream>
 #include "system.h"
 
+
 bool System::sdl_initialize() {
 	if (SDL_Init(SDL_INIT_EVERYTHING  < 0)) {
 		std::cerr << "Faild to initialize" << std::endl;
@@ -27,6 +28,8 @@ bool System::sdl_initialize() {
 }
 
 void System::sdl_finalize() {
+	game.finalize();
+
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -35,9 +38,12 @@ void System::sdl_finalize() {
 void System::main_loop() {
 	bool flag = true;
 	char valFps[10];
-	int frameCount = 0;
+
 
 	while (flag) {
+		//fps.Update();
+
+		//clear
 		SDL_SetRenderDrawColor(render, 255, 255, 255, 255);
 		SDL_RenderClear(render);
 
@@ -54,15 +60,19 @@ void System::main_loop() {
 
 		game.draw(&render);
 
+
 		//Draw
 		SDL_RenderPresent(render);
 
-
-		sprintf(valFps, "%f", fps.delay());
-		if (frameCount % 60 == 59) {
-			SDL_SetWindowTitle(window, valFps);
-		}
-		frameCount++;
+		fps.delay();
+		sprintf(valFps, "%f", fps.getFps());
+		SDL_SetWindowTitle(window, valFps);
+		
+        /*
+		fps.delay();
+		sprintf(valFps, "%f", fps.getFps());
+		SDL_SetWindowTitle(window, valFps);
+		*/
 	}
 }
 

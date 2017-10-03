@@ -2,16 +2,33 @@
 #include <cstdlib>
 #include "fps.h"
 
-double Fps::delay()
+
+void Fps::delay()
 {
-	now = SDL_GetTicks();
+	if (timeCount >= 1000) {
+		fps = static_cast<double>(frameCount) / (static_cast<double>(timeCount) / 1000.0);
+		timeCount = 0;
+		frameCount = 0;
+	}
 
-	Uint32 diff = now - preTime;
-	if (diff < mspf) SDL_Delay(mspf - diff);
+	frameCount++;
 
-	fps = 1.0 / static_cast<double>(SDL_GetTicks() - preTime) * 1000.0;
+	nowTime = SDL_GetTicks();
 
-	preTime = now;
+	Uint32 diff = nowTime - preTime;
 
+	preTime = nowTime;
+
+	if (mspf > diff) {
+		SDL_Delay(mspf - diff);
+	}
+
+	timeCount += diff;
+}
+
+double Fps::getFps()
+{
 	return fps;
 }
+
+

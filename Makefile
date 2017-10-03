@@ -20,7 +20,7 @@ INC_DIRS := $(SRC_DIRS)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 # リンカ用オプション
-LDFLAGS := $(shell sdl2-config --libs) -lSDL2_ttf #-lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_net
+LDFLAGS := $(shell sdl2-config --libs) -lSDL2_ttf -lSDL2_image #-lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_net
 
 # コンパイルオプション
 #CXXFLAGS := -Wall -Wextra -g -std=c++14 -DDEBUG
