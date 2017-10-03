@@ -1,34 +1,35 @@
-#include <SDL.h>
-#include <cstdlib>
-#include "fps.h"
+#include <fps.h>
 
+#include <iostream>
 
-void Fps::delay()
+void Fps::Update()
 {
-	if (timeCount >= 1000) {
-		fps = static_cast<double>(frameCount) / (static_cast<double>(timeCount) / 1000.0);
-		timeCount = 0;
+	if (frameCount == 0) {
+		mStartTime = SDL_GetTicks();
+	} else if (frameCount == N) {
+		Uint32 t = SDL_GetTicks();
+		//型に注意
+		mfps = static_cast<double>(N) / static_cast<double>(t - mStartTime) * 1000.0;
 		frameCount = 0;
+		mStartTime = t;
 	}
 
 	frameCount++;
+}
 
-	nowTime = SDL_GetTicks();
+void Fps::delay()
+{
+	Uint32 tookTime = SDL_GetTicks() - mStartTime;
+	Uint32 waitTime = static_cast<Uint32>(frameCount) * static_cast<Uint32>(1000) / FPS - tookTime;
 
-	Uint32 diff = nowTime - preTime;
-
-	preTime = nowTime;
-
-	if (mspf > diff) {
-		SDL_Delay(mspf - diff);
+	//Uint32 : unsigned int ?
+	if (static_cast<int>(waitTime) > 0) {
+		SDL_Delay(waitTime);
 	}
-
-	timeCount += diff;
 }
 
 double Fps::getFps()
 {
-	return fps;
+	return mfps;
 }
-
 

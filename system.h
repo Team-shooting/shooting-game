@@ -17,8 +17,8 @@ class System {
 	Game game;
 
 	char title[20] = "Shooting-Gmae";
-	const int width = 800;
-	const int height = 600;
+	const int window_width = 800;
+	const int window_height = 600;
 
 
 	public:

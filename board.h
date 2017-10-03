@@ -10,16 +10,11 @@ class Board {
 		int life;
 		int power;
 
-		//const int width = 200;
-		//const int height = 600;
-		//const int xPos = 600;
-		//const int yPow = 0;
-		//SDL_Rect board = {600, 0, 200, 600};
 
 		//Font
 		//TTF_Font *font;
-		SDL_Surface *surf;
-		SDL_Texture *tex;
+		SDL_Surface *surf_score;
+		SDL_Texture *tex_score;
 		SDL_Rect texRect, pasteRect;
 
 

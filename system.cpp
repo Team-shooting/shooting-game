@@ -9,7 +9,7 @@ bool System::sdl_initialize() {
 		return false;
 	}
 
-	window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, 0);
+	window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, 0);
 	if (window == nullptr) {
 		std::cerr << "Faild to create window" << std::endl;
 		return false;
@@ -41,7 +41,7 @@ void System::main_loop() {
 
 
 	while (flag) {
-		//fps.Update();
+		fps.Update();
 
 		//clear
 		SDL_SetRenderDrawColor(render, 255, 255, 255, 255);
@@ -67,12 +67,6 @@ void System::main_loop() {
 		fps.delay();
 		sprintf(valFps, "%f", fps.getFps());
 		SDL_SetWindowTitle(window, valFps);
-		
-        /*
-		fps.delay();
-		sprintf(valFps, "%f", fps.getFps());
-		SDL_SetWindowTitle(window, valFps);
-		*/
 	}
 }
 

@@ -17,8 +17,8 @@ bool Board::initialize()
 		exit(1);
 	}
 
-	surf = IMG_Load("/home/hoge/shooting-game/shooting-game/resources/sake.jpg");
-	if (surf == nullptr) {
+	surf_score = IMG_Load("/home/hoge/shooting-game/shooting-game/resources/score.jpg");
+	if (surf_score == nullptr) {
 		cout << "Error : IMG_Load -- " << IMG_GetError() << endl;
 		exit(1);
 	}
@@ -38,22 +38,22 @@ void Board::draw(SDL_Renderer **render)
 	static int tex_init = 0;
 
 	if (tex_init == 0) {
-		tex = SDL_CreateTextureFromSurface(*render, surf);
-		if (tex == nullptr) {
+		tex_score = SDL_CreateTextureFromSurface(*render, surf_score);
+		if (tex_score == nullptr) {
 			cerr << "Error : " << SDL_GetError() << endl;
 			exit(1); 
 		}
 
 		int w, h;
-		SDL_QueryTexture(tex, NULL, NULL, &w, &h);
+		//SDL_QueryTexture(tex, NULL, NULL, &w, &h);
 
-		texRect = (SDL_Rect){0, 0, w, h};
-		pasteRect = (SDL_Rect){0, 0, w, h};
+		texRect = (SDL_Rect){0, 0, 200, 600};
+		pasteRect = (SDL_Rect){600, 0, 200, 600};
 
 		tex_init = 1;
 	}
 
-	SDL_RenderCopy(*render, tex, &texRect, &pasteRect);
+	SDL_RenderCopy(*render, tex_score, &texRect, &pasteRect);
 
 }
 
@@ -61,5 +61,6 @@ void Board::finalize()
 {
 	//ハイスコアの処理
 
-	SDL_FreeSurface(surf);
+	SDL_FreeSurface(surf_score);
+	SDL_DestroyTexture(tex_score);
 }
