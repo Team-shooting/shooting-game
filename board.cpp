@@ -17,7 +17,7 @@ bool Board::initialize()
 		exit(1);
 	}
 
-	surf_score = IMG_Load("/home/hoge/shooting-game/shooting-game/resources/score.jpg");
+	surf_score = IMG_Load("./resources/score.jpg");
 	if (surf_score == nullptr) {
 		cout << "Error : IMG_Load -- " << IMG_GetError() << endl;
 		exit(1);
