@@ -33,9 +33,9 @@ public:
 
 	void addEnemy();
 
-	void addBullet(ACTORTYPE type);
+	void addBullet(std::shared_ptr<Actor> chara, ACTORTYPE type);
 
-	void attackEnemy();
+	void attackEnemy(std::shared_ptr<Actor> chara);
 
 	/*----------------------------------------------------------*/
 	//FOR PLAYER

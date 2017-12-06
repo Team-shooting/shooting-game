@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 #include "commonData.h"
 #include "hitActor.h"
@@ -42,6 +43,7 @@ public:
 		if (instance) {
 			HitActor::getInstance();
 			CommonData::getInstance();
+			srandom(time(NULL));
 		}
 	}
 };

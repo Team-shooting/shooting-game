@@ -32,13 +32,13 @@ void ActorMgr::addList(std::shared_ptr<Actor> &chara)
 void ActorMgr::addEnemy()
 {
 	std::shared_ptr<Actor> p = std::make_shared<Enemy>();
-	p->initialize(random() % 500, random() % 300, 69, 79, 1, 5, 0,
+	p->initialize(random() % 500, random() % 300, 69, 79, 1, 5, 3,
 	              "./resources/rabit.png");
 	addList(p);
 }
 
 
-void ActorMgr::addBullet(ACTORTYPE type)
+void ActorMgr::addBullet(std::shared_ptr<Actor> chara, ACTORTYPE type)
 {
 	std::shared_ptr<Actor> p;
 
@@ -57,15 +57,15 @@ void ActorMgr::addBullet(ACTORTYPE type)
 		return;
 	}
 		
-	p->initialize(player->getPosX() + player->getWidth() / 2 - 20, 
-	              player->getPosY() - 40, 40, 34, 1, player->attack(),
+	p->initialize(chara->getPosX() + chara->getWidth() / 2 - 20, 
+	              chara->getPosY() - 40, 40, 34, 1, chara->attack(),
 		      	  10, "./resources/bullet.png");
 	addList(p);
 }
 
-void ActorMgr::attackEnemy()
+void ActorMgr::attackEnemy(std::shared_ptr<Actor> chara)
 {
-
+	addBullet(chara, ENEMY_BULLET);
 }
 
 /*----------------------------------------------------------*/
@@ -81,7 +81,7 @@ void ActorMgr::movePlayer(VEC vec) {
 void ActorMgr::attackPlayer() {
 
 	if (player) {
-		addBullet(PLAYER_BULLET);
+		addBullet(player, PLAYER_BULLET);
 	} 
 }
 
@@ -180,6 +180,7 @@ void ActorMgr::update() {
 	//update
 	chara = ActorList.begin();
 	while (chara != ActorList.end()) {
+
 		(*chara)->update();
 		chara++;
 	}

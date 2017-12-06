@@ -63,7 +63,7 @@ bool Enemy::initialize() {
 	setSize(100, 100);
 	setLife(3);
 	setPower(5);
-	setVelocity(0);
+	setVelocity(1);
 	setImg("./resources/test_player.jpg"); 
 
 	type = ENEMY;
@@ -138,35 +138,10 @@ void Enemy::finalize() {
 
 void Enemy::move()
 {
-	switch (random() % 8) {
-	case 0:
-		posY -= velocity;
-		break;
-	case 1:
-		posY += velocity;
-		break;
-	case 2:
-		posX += velocity;
-		break;
-	case 3:
-		posX -= velocity;
-		break;
-	case 4:
-		posY -= velocity;
-		posX += velocity;
-		break;
-	case 5:
-		posY -= velocity;
-		posX -= velocity;
-		break;
-	case 6:
-		posY += velocity;
-		posX += velocity;
-		break;
-	case 7:
-		posY += velocity;
-		posX -= velocity;
-		break;
+	if (areaCheck(vec)) {
+		posX = vec == RIGHT ? posX + velocity : posX - velocity;
+	} else {
+		vec = vec == RIGHT ? LEFT : RIGHT;
 	}
 
 	image.setPos(posX, posY);

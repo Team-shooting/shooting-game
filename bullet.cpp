@@ -139,7 +139,7 @@ void Bullet::move() {
 	if (posY + height > velocity) {
 		posY -= velocity;
 		//image.getRect()->y = posY;
-		image.setPos(posX, posY);
+		//image.setPos(posX, posY);
 	} else {
 		posY = 0;
 

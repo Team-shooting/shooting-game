@@ -9,6 +9,8 @@ class Enemy : public Actor{
 	//Textureの処理をただ一度に限定するためのフラグ
 	//bool tex_init = false;
 
+	VEC vec = RIGHT;
+
 public:
 	Enemy() = default;
 	~Enemy() = default;
