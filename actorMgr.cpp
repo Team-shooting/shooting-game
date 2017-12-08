@@ -252,10 +252,6 @@ void ActorMgr::update() {
 void ActorMgr::draw(SDL_Renderer **render) {
 	auto chara = ActorList.begin();
 
-	if (!player) {
-		chara++;
-	}
-
 	while (chara != ActorList.end()) {
 		if (!((*chara)->isDead())) {
 			(*chara)->draw(render);
